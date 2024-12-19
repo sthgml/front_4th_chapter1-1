@@ -1,10 +1,26 @@
+import userInfoStore from "../store/userInfoStore";
+import { navigate } from "../utils/navigate";
+
+document.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const id = form.querySelector("input[type=text]").value;
+
+  if (id.trim().length === 0) {
+    alert("이메일 또는 전화번호를 입력해줘");
+  } else {
+    userInfoStore.setUserInfo({ userId: id });
+    navigate("/");
+  }
+});
+
 const LoginPage = () => `
   <main class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
       <h1 class="text-2xl font-bold text-center text-blue-600 mb-8">항해플러스</h1>
-      <form>
+      <form id="login-form">
         <div class="mb-4">
-          <input type="text" placeholder="이메일 또는 전화번호" class="w-full p-2 border rounded">
+          <input type="text" placeholder="이메일 또는 전화번호" class="w-full p-2 border rounded" required>
         </div>
         <div class="mb-6">
           <input type="password" placeholder="비밀번호" class="w-full p-2 border rounded">
@@ -16,7 +32,7 @@ const LoginPage = () => `
       </div>
       <hr class="my-6">
       <div class="text-center">
-        <button class="bg-green-500 text-white px-4 py-2 rounded font-bold">새 계정 만들기</button>
+        <button type="button" class="bg-green-500 text-white px-4 py-2 rounded font-bold">새 계정 만들기</button>
       </div>
     </div>
   </main>

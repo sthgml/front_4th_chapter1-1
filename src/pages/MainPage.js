@@ -1,9 +1,14 @@
-const navigate = (path) => {
-  window.history.pushState({}, "", path);
-  window.dispatchEvent(new Event("popstate"));
-};
+import userInfoStore from "../store/userInfoStore";
+import { navigate } from "../utils/navigate";
+import Header from "../components/Header";
 
 document.addEventListener("click", (e) => {
+  console.log(e.target.dataset.path === "/login");
+
+  if (e.target.dataset.path === "/login") {
+    userInfoStore.clearUserInfo();
+  }
+
   if (e.target.dataset.path) {
     navigate(e.target.dataset.path);
   }
@@ -12,17 +17,7 @@ document.addEventListener("click", (e) => {
 const MainPage = () => `
   <div class="bg-gray-100 min-h-screen flex justify-center">
     <div class="max-w-md w-full">
-      <header class="bg-blue-600 text-white p-4 sticky top-0">
-        <h1 class="text-2xl font-bold">항해플러스</h1>
-      </header>
-
-      <nav class="bg-white shadow-md p-2 sticky top-14">
-        <ul class="flex justify-around">
-          <li><button data-path="/" class="text-blue-600">홈</button></li>
-          <li><button data-path="/profile" class="text-gray-600">프로필</button></li>
-          <li><button data-path="/login" class="text-gray-600">로그아웃</button></li>
-        </ul>
-      </nav>
+      ${Header()}
 
       <main class="p-4">
         <div class="mb-4 bg-white rounded-lg shadow p-4">
