@@ -88,7 +88,7 @@ const ProfilePage = () => {
 
 const updateProfile = (e) => {
   e.preventDefault();
-  if (e.target.id !== "update-profile-button") {
+  if (e.target.id !== "profile-form") {
     return;
   }
   const userInfo = userInfoStore.getUserInfo();
