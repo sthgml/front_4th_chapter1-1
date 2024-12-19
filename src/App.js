@@ -18,9 +18,11 @@ const App = () => {
   let routePage = router[window.location.pathname] || ErrorPage;
 
   // NOTE(@sohee): userInfo가 저장된 값이 없으면 로그인 페이지로 이동
-  if (window.location.pathname === "/profile" && !userInfo) {
-    window.history.pushState({}, "", "/login");
-    routePage = LoginPage;
+  if (window.location.pathname === "/profile") {
+    if (!userInfo) {
+      window.history.pushState({}, "", "/login");
+      routePage = LoginPage;
+    }
   }
 
   // // NOTE(@sohee): serInfo가 저장된 값이 있을 땐 로그인 페이지로 접근해도 메인 페이지로 이동
@@ -29,8 +31,9 @@ const App = () => {
   //   routePage = MainPage;
   // }
 
-  document.addEventListener("click", routePage.register);
-  document.addEventListener("submit", routePage.register);
+  routePage.register && document.addEventListener("click", routePage.register);
+  routePage.submitRegister &&
+    document.addEventListener("submit", routePage.submitRegister);
 
   return routePage();
 };

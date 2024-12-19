@@ -1,6 +1,6 @@
 const userInfoStore = {
   getUserInfo: () => {
-    const stringUserInfo = localStorage.getItem("userInfo");
+    const stringUserInfo = localStorage.getItem("user");
     const userInfo = stringUserInfo ? JSON.parse(stringUserInfo) : null;
     return userInfo;
   },

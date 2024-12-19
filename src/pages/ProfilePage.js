@@ -33,7 +33,7 @@ const ProfilePage = () => {
                     type="text"
                     id="username"
                     name="username"
-                    value="${userInfo?.username ?? ""}"
+                    value="${userInfo.username}"
                     class="w-full p-2 border rounded"
                   />
                 </div>
@@ -98,6 +98,6 @@ const updateProfile = (e) => {
   userInfoStore.setUserInfo({ ...userInfo, bio });
 };
 
-ProfilePage.register = updateProfile;
+ProfilePage.submitRegister = updateProfile;
 
 export default ProfilePage;

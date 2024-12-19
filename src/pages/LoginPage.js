@@ -42,6 +42,6 @@ const submitLoginForm = (e) => {
   }
 };
 
-LoginPage.register = submitLoginForm;
+LoginPage.submitRegister = submitLoginForm;
 
 export default LoginPage;
