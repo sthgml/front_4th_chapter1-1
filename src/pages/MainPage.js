@@ -2,18 +2,6 @@ import userInfoStore from "../store/userInfoStore";
 import { navigate } from "../utils/navigate";
 import Header from "../components/Header";
 
-document.addEventListener("click", (e) => {
-  console.log(e.target.dataset.path === "/login");
-
-  if (e.target.dataset.path === "/login") {
-    userInfoStore.clearUserInfo();
-  }
-
-  if (e.target.dataset.path) {
-    navigate(e.target.dataset.path);
-  }
-});
-
 const MainPage = () => `
   <div class="bg-gray-100 min-h-screen flex justify-center">
     <div class="max-w-md w-full">
@@ -115,5 +103,17 @@ const MainPage = () => `
     </div>
   </div>
 `;
+
+const routePage = (e) => {
+  if (e.target.dataset.path === "/login") {
+    userInfoStore.clearUserInfo();
+  }
+
+  if (e.target.dataset.path) {
+    navigate(e.target.dataset.path);
+  }
+};
+
+MainPage.register = routePage;
 
 export default MainPage;

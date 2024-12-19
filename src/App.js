@@ -15,21 +15,24 @@ const router = {
 
 const App = () => {
   const userInfo = userInfoStore.getUserInfo();
+  let routePage = router[window.location.pathname] || ErrorPage;
 
   // NOTE(@sohee): userInfo가 저장된 값이 없으면 로그인 페이지로 이동
-  if (!userInfo || !userInfo.userId) {
-    window.history.pushState({}, "", "/");
-    return LoginPage();
+  if (window.location.pathname === "/profile" && !userInfo) {
+    window.history.pushState({}, "", "/login");
+    routePage = LoginPage;
   }
 
-  // NOTE(@sohee): serInfo가 저장된 값이 있을 땐 로그인 페이지로 접근해도 메인 페이지로 이동
-  if (window.location.pathname === "/login") {
-    window.history.pushState({}, "", "/");
-    return MainPage();
-  } else {
-    const routePage = router[window.location.pathname] || ErrorPage;
-    return routePage();
-  }
+  // // NOTE(@sohee): serInfo가 저장된 값이 있을 땐 로그인 페이지로 접근해도 메인 페이지로 이동
+  // if (window.location.pathname === "/login") {
+  //   window.history.pushState({}, "", "/");
+  //   routePage = MainPage;
+  // }
+
+  document.addEventListener("click", routePage.register);
+  document.addEventListener("submit", routePage.register);
+
+  return routePage();
 };
 
 export default App;

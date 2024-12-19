@@ -6,11 +6,13 @@ const userInfoStore = {
   },
 
   setUserInfo: (newValue) => {
-    localStorage.setItem("userInfo", JSON.stringify(newValue));
+    localStorage.setItem("user", JSON.stringify(newValue));
+    window.dispatchEvent(new Event("popstate"));
   },
 
   clearUserInfo: () => {
-    localStorage.setItem("userInfo", "");
+    localStorage.clear("user");
+    window.dispatchEvent(new Event("popstate"));
   },
 };
 

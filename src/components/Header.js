@@ -1,7 +1,6 @@
 const navList = [
   { path: "/", label: "홈" },
   { path: "/profile", label: "프로필" },
-  { path: "/login", label: "로그아웃" },
 ];
 
 const Header = () => `
@@ -19,6 +18,15 @@ const Header = () => `
           }),
         )
         .join("")}
+        <li>
+    <button 
+      id="logout"
+      data-path="/login"
+      class="text-gray-600"
+    >
+      로그아웃
+    </button>
+  </li>
     </ul>
   </nav>
 `;
