@@ -37,7 +37,7 @@ const liItem = ({ currentPath, path, label }) => {
     <button 
       id="nav-button"
       data-path="${path}"
-      class="${currentPath.replace("/", "") === path.replace("/", "") ? "text-blue-600" : "text-gray-600"}"
+      class="${currentPath.replace("/", "") === path.replace("/", "") ? "font-bold text-blue-600" : "text-gray-600"}"
     >
       ${label}
     </button>
