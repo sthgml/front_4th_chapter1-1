@@ -19,13 +19,14 @@ const Header = () => `
         )
         .join("")}
         <li>
-          <button 
+          <a 
             id="logout"
+            href="/login"
             data-path="/login"
             class="text-gray-600"
           >
             로그아웃
-          </button>
+          </a>
         </li>
     </ul>
   </nav>
@@ -34,13 +35,14 @@ const Header = () => `
 const liItem = ({ currentPath, path, label }) => {
   return `
   <li>
-    <button 
+    <a 
       id="nav-button"
       data-path="${path}"
+      href="${path}"
       class="${currentPath.replace("/", "") === path.replace("/", "") ? "font-bold text-blue-600" : "text-gray-600"}"
     >
       ${label}
-    </button>
+    </a>
   </li>
   `;
 };

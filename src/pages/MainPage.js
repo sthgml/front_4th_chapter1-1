@@ -105,6 +105,10 @@ const MainPage = () => `
 `;
 
 const routePage = (e) => {
+  if (!e.target.dataset.path) {
+    return;
+  }
+
   if (e.target.dataset.path === "/login") {
     userInfoStore.clearUserInfo();
   }
